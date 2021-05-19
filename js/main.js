@@ -95,7 +95,6 @@ function generateRepoList(repositories) {
         totalCount: forkCount
       }
     } = repository
-    console.log(languages)
     let listItem = document.createElement("li");
     listItem.classList.add('repo-list-item');
     let elementContent = `
@@ -128,7 +127,7 @@ function generateRepoList(repositories) {
             ` : ''
           }
           </a>
-          Updated on ${updatedAt}
+          Updated on ${formatDate(updatedAt)}
         </div>
       </div>
       <button class="repo-star-button">
@@ -151,4 +150,11 @@ function toggleLoader() {
   for (let element of document.querySelectorAll('[data-loader]')) {
     element.style.display = 'none'
   }
+}
+function formatDate(date) {
+  const dateToFormat = new Date(date)
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dev'
+  ]
+  return `${dateToFormat.getDate()} ${months[dateToFormat.getMonth()]} ${dateToFormat.getFullYear()}`
 }
